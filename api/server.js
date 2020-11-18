@@ -7,32 +7,32 @@ const postRouter = require("../Posts/post-router.js");
 // const restricted = require("../auth/auth-middleware");
 
 const server = express();
+server.use(cors());
 server.use(helmet());
 server.use(morgan("dev"));
-server.use(cors());
 server.use(express.json());
 
 server.get("/", (req, res) => {
   res.json({ message: "api is running" });
 });
 
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+// server.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 
-server.post("/:id", (req, res) => {
-  request(
-    { url: "https://bd-comake.herokuapp.com/api/posts/:id" },
-    (error, response, body) => {
-      if (error || response.statusCode !== 200) {
-        return res.status(500).json({ type: "error", message: err.message });
-      }
+// server.post("/:id", (req, res) => {
+//   request(
+//     { url: "https://bd-comake.herokuapp.com/api/posts/:id" },
+//     (error, response, body) => {
+//       if (error || response.statusCode !== 200) {
+//         return res.status(500).json({ type: "error", message: err.message });
+//       }
 
-      res.json(JSON.parse(body));
-    }
-  );
-});
+//       res.json(JSON.parse(body));
+//     }
+//   );
+// });
 
 server.use("/api/auth", authRouter);
 server.use("/api/posts", postRouter);
