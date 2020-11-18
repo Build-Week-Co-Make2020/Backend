@@ -7,9 +7,9 @@ const postRouter = require("../Posts/post-router.js");
 // const restricted = require("../auth/auth-middleware");
 
 const server = express();
+server.use(cors());
 server.use(helmet());
 server.use(morgan("dev"));
-server.use(cors());
 server.use(express.json());
 
 server.get("/", (req, res) => {
