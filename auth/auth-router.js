@@ -18,7 +18,8 @@ router.post("/register", (req, res) => {
 
     Users.add(credentials)
       .then((user) => {
-        res.status(201).json({ data: user });
+        let token = makeToken(user)
+        res.status(201).json({ data: user, token: token });
       })
       .catch((error) => {
         res.status(500).json({ message: error.message });
