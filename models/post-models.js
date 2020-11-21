@@ -30,7 +30,11 @@ function update(id, changes) {
 }
 
 async function remove(id) {
-  const deletePost = await db("posts").where({ id });
-  await db("posts").where({ id }).del();
+  try {
+    const deletePost = await db("posts").where({ id })
+  await db("posts").where({ id }).del()
   return deletePost;
+  } catch (error) {
+    throw error;
+  }
 }

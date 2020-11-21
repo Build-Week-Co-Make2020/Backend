@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { get } = require("../auth/auth-router");
 const Posts = require("../models/post-models");
 
 router.get("/", (req, res) => {
@@ -20,7 +19,7 @@ router.post("/:id", (req, res) => {
       res.status(201).json(post);
     })
     .catch((error) => {
-      next({ message: error.message });
+      res.status(500).json({ message: error.message });
     });
 });
 
