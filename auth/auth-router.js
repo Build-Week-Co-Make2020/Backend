@@ -36,7 +36,7 @@ router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   if (isValid(req.body)) {
-    Users.findBy({email})
+    Users.findBy({ email })
       .then(([user]) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = makeToken(user);

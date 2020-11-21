@@ -7,7 +7,7 @@ describe('tests the auth-router', () => {
             return request(server)
                 .post('/api/auth/register')
                 .send({
-                    email: "sofia1@gmail.com",
+                    email: "sofia5@gmail.com",
                     password: "123456"
                 })
                 .then(res => {
@@ -29,7 +29,7 @@ describe('tests the auth-router', () => {
             return request(server)
             .post('/api/auth/register')
             .send({
-                email: "sofia1@gmail.com",
+                email: "sofia5@gmail.com",
                 password: "123456"
             })
             .then(res => {
