@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const authRouter = require("../auth/auth-router.js");
 const postRouter = require("../Posts/post-router.js");
-// const restricted = require("../auth/auth-middleware");
+const restricted = require("../auth/auth-middleware");
 
 const server = express();
 server.use(cors());
@@ -17,6 +17,6 @@ server.get("/", (req, res) => {
 });
 
 server.use("/api/auth", authRouter);
-server.use("/api/posts", postRouter);
+server.use("/api/posts", restricted, postRouter);
 
 module.exports = server;
